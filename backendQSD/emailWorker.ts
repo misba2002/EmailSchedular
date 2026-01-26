@@ -1,10 +1,10 @@
 import { Worker } from "bullmq";
 import nodemailer, { Transporter } from "nodemailer";
-import { redis } from "./redis";
-import { pool } from "./db";
+import { redis } from "./redis.js";
+import { pool } from "./db.js";
 import dotenv from "dotenv";
 import { Job } from "bullmq";
-import { emailQueue } from "./emailQueue";
+import { emailQueue } from "./emailQueue.js";
 dotenv.config();
 
 

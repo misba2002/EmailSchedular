@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import emailRouter from "./routes/emails";
-import "./emailWorker";
-import { redis } from "./redis";
-import { pool } from "./db";
+import emailRouter from "./routes/emails.js";
+import "./emailWorker.js";
+import { redis } from "./redis.js";
+import { pool } from "./db.js";
 import dotenv from "dotenv";
 import { scheduleEmail } from "./emailSchedular.js";
 

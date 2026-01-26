@@ -1,8 +1,8 @@
 import { Router, Request, Response } from "express";
-import { sendEmailSchema } from "../validators/email.validator";
-import { pool } from "../db";
+import { sendEmailSchema } from "../validators/email.validator.js";
+import { pool } from "../db.js";
 import { z } from "zod";
-import { scheduleEmail } from "../emailSchedular";
+import { scheduleEmail } from "../emailSchedular.js";
 
 const router = Router();
 

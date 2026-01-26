@@ -1,6 +1,6 @@
 
-import { emailQueue } from "./emailQueue";
-import { pool } from "./db";
+import { emailQueue } from "./emailQueue.js";
+import { pool } from "./db.js";
 
 
 
