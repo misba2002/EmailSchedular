@@ -206,7 +206,7 @@ SendGrid SMTP
 | CSV/TXT upload           | ❌       | ✅        |
 
 
-**👉 Demo Link: (Add here)**
+**👉 Demo Link:(vedio-link)[https://www.loom.com/share/5dc925cc73924679aa60bd57406e0135]
 
 **⚡ Assumptions, Shortcuts & Trade-offs**
 
