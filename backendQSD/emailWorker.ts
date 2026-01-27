@@ -1,5 +1,6 @@
 import { Worker } from "bullmq";
-import nodemailer, { Transporter } from "nodemailer";
+// import nodemailer, { Transporter } from "nodemailer";  {NOT AVAIBLE FOR HOSTING PORT 587 ON RENDER}
+import sgMail from "@sendgrid/mail";
 import { redis } from "./redis.js";
 import { pool } from "./db.js";
 import dotenv from "dotenv";
@@ -7,7 +8,12 @@ import { Job } from "bullmq";
 import { emailQueue } from "./emailQueue.js";
 dotenv.config();
 
+// setting sgrind api key
+if (!process.env.SENDGRID_API_KEY) {
+  throw new Error("SENDGRID_API_KEY is missing in .env");
+}
 
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const CONCURRENCY = parseInt(process.env.WORKER_CONCURRENCY || "3");
 
@@ -74,22 +80,38 @@ new Worker(
 
     // SEND EMAIL + UPDATE STATUS
     try {
-      const transporter: Transporter = nodemailer.createTransport({
-        host: process.env.ETHEREAL_HOST,
-        port:Number( process.env.ETHEREAL_PORT),
-        secure: false,
-        auth: {
-          user: process.env.ETHEREAL_USER,
-          pass: process.env.ETHEREAL_PASS,
-        },
-      });
+      // {ONLY USEFULL FOR DEVELOPMENT PURPOSE NOT FOR HOSTING AND PRODUCTION LEVEL}
+      // const transporter: Transporter = nodemailer.createTransport({
+      //   host: process.env.ETHEREAL_HOST,
+      //   port:Number( process.env.ETHEREAL_PORT),
+      //   secure: false,
+      //   auth: {
+      //     user: process.env.ETHEREAL_USER,
+      //     pass: process.env.ETHEREAL_PASS,
+      //   },
+      // });
 
-      await transporter.sendMail({
-        from: `"No Reply" <${process.env.ETHEREAL_USER}>`,
-        to: recipient,
-        subject,
-        text: body,
-      });
+      // await transporter.sendMail({
+      //   from: `"No Reply" <${process.env.ETHEREAL_USER}>`,
+      //   to: recipient,
+      //   subject,
+      //   text: body,
+      // });
+
+    // SENDING EMAIL THROUGH SENDGRIND
+     const msg = {
+       to: recipient,
+       from: process.env.SENDGRID_SENDER!, // TypeScript-safe non-null
+       subject,
+       text: body,
+       };
+
+     await sgMail.send(msg);
+
+
+
+
+
 
     //   UPDATING STATUS
       await pool.query(`UPDATE emails SET status='sent',sent_at=NOW() WHERE id=$1`, [emailId]);
