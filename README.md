@@ -1,6 +1,6 @@
 # 📧 Email Scheduler System
 
-A full-stack **Email Scheduling Platform** built as part of the **ReachInbox Assignment**.  
+A full-stack **Email Scheduling Platform**  
 This system allows users to schedule emails for future delivery, apply delays and hourly limits, and reliably send emails even after server restarts.
 
 ---
