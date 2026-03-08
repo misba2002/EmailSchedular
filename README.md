@@ -15,6 +15,8 @@ This system allows users to schedule emails for future delivery, apply delays an
 
 ---
 
+**👉 Demo Link:(vedio-link)[https://drive.google.com/file/d/18vHcjcrilG5RpgFq_cwl1jfgCFcDJdog/view?usp=drivesdk]
+
 ## 🚀 Project Overview
 
 This application enables users to:
@@ -109,7 +111,7 @@ npm run worker
 
 Health check:
 
-backend-url /health=>
+backend-url /=>
 
 {
 status:success
@@ -206,7 +208,7 @@ SendGrid SMTP
 | CSV/TXT upload           | ❌       | ✅        |
 
 
-**👉 Demo Link:(vedio-link)[https://www.loom.com/share/5dc925cc73924679aa60bd57406e0135]
+
 
 **⚡ Assumptions, Shortcuts & Trade-offs**
 
