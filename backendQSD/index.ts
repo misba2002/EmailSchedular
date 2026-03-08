@@ -22,7 +22,7 @@ app.use(
 
 app.use("/emails", emailRouter);
 
-app.get("/health",(req,res)=>{
+app.get("/",(req,res)=>{
     res.json({status:"ok"});
 });
 
